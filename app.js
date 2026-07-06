@@ -20,6 +20,10 @@ function prettyDate(iso = todayISO()){
   const [y,m,d] = iso.split('-').map(Number);
   return new Date(y, m - 1, d).toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'});
 }
+function fileDatePart(iso = todayISO()){
+  const [y,m,d] = iso.split('-');
+  return `${d}-${m}-${String(y).slice(-2)}`;
+}
 function cleanFilePart(value){
   return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,48) || 'Evidencia';
 }
@@ -143,7 +147,7 @@ async function generatePdf(){
   try {
     const pdfBlob = await buildPdf({store, date, evidences});
     if (lastPdfUrl) URL.revokeObjectURL(lastPdfUrl);
-    const fileName = `Estandar_MaxMin_${cleanFilePart(store.cc)}_${cleanFilePart(store.name)}_${cleanFilePart(currentStation())}_${date}.pdf`;
+    const fileName = `Estandar_Max&Min_${cleanFilePart(store.cc)}_${fileDatePart(date)}.pdf`;
     lastPdfFile = new File([pdfBlob], fileName, {type:'application/pdf'});
     lastPdfUrl = URL.createObjectURL(lastPdfFile);
     $('#shareBtn').disabled = !navigator.canShare || !navigator.canShare({files:[lastPdfFile]});
@@ -195,24 +199,29 @@ function pdfText(text, x, y, size, opts = {}){
   const color = opts.color || '0.04 0.18 0.14';
   return `BT /${font} ${size} Tf ${color} rg ${x} ${y} Td (${pdfEscape(text)}) Tj ET\n`;
 }
-function fitRect(img, x, y, w, h){
-  // Ajuste automatico tipo contain optimizado: usa el maximo espacio disponible
-  // sin deformar ni recortar la fotografia.
+function fitImageToBox(img, x, y, w, h){
+  // Ajuste tipo cover con clip, inspirado en LayOut: la foto llena el recuadro
+  // disponible, conserva proporcion y evita deformacion. El recorte es centrado.
   const imgRatio = img.width / img.height;
   const boxRatio = w / h;
   let dw, dh;
   if (imgRatio > boxRatio) {
-    dw = w;
-    dh = w / imgRatio;
-  } else {
     dh = h;
     dw = h * imgRatio;
+  } else {
+    dw = w;
+    dh = w / imgRatio;
   }
-  return {x:x + (w-dw)/2, y:y + (h-dh)/2, w:dw, h:dh};
+  return {x:x + (w - dw) / 2, y:y + (h - dh) / 2, w:dw, h:dh};
 }
 function drawImage(name, img, x, y, w, h){
-  const r = fitRect(img, x, y, w, h);
-  return `q ${r.w.toFixed(2)} 0 0 ${r.h.toFixed(2)} ${r.x.toFixed(2)} ${r.y.toFixed(2)} cm /${name} Do Q\n`;
+  const r = fitImageToBox(img, x, y, w, h);
+  return [
+    'q',
+    `${x.toFixed(2)} ${y.toFixed(2)} ${w.toFixed(2)} ${h.toFixed(2)} re W n`,
+    `${r.w.toFixed(2)} 0 0 ${r.h.toFixed(2)} ${r.x.toFixed(2)} ${r.y.toFixed(2)} cm /${name} Do`,
+    'Q\n'
+  ].join(' ');
 }
 async function buildPdf({store, date, evidences}){
   const images = [];
@@ -242,10 +251,10 @@ async function buildPdf({store, date, evidences}){
     content += pdfText('Estandar Max&Min', 40, 812, 20, {bold:true,color:'1 1 1'});
     content += pdfText(subtitle, 40, 789, 11, {color:'0.85 1 0.93'});
     content += pdfText(`Fecha: ${prettyDate(date)}`, 418, 789, 11, {color:'0.85 1 0.93'});
-    // Cada recuadro toma casi media hoja. La imagen usa el area interior maxima.
-    const frameX = 28, frameW = 539, frameH = 330, pad = 8;
-    const beforeFrameY = 405;
-    const afterFrameY = 40;
+    // Recuadros amplios tipo LayOut: la foto llena horizontal y verticalmente el espacio.
+    const frameX = 26, frameW = 543, frameH = 318, pad = 6;
+    const beforeFrameY = 414;
+    const afterFrameY = 48;
     content += pdfText('ANTES', 32, 746, 18, {bold:true,color:'0.76 0.10 0.10'});
     content += `0.96 0.98 0.97 rg ${frameX} ${beforeFrameY} ${frameW} ${frameH} re f\n0.86 0.91 0.88 RG ${frameX} ${beforeFrameY} ${frameW} ${frameH} re S\n`;
     content += drawImage('ImBefore', before, frameX + pad, beforeFrameY + pad, frameW - (pad * 2), frameH - (pad * 2));
