@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#006241">
+  <meta name="description" content="PWA para evidencias Max&Min BOH con PDF antes y después.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="MaxMin BOH">
+  <title>Estandar Max&Min</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">★</div>
+      <div>
+        <strong>Estandar Max&Min</strong>
+        <span>Back of House · Orden · Limpieza · Evidencia</span>
+      </div>
+    </div>
+    <nav class="top-actions" aria-label="Acciones principales">
+      <button id="installBtn" class="ghost hidden" type="button">Instalar PWA</button>
+      <a class="ghost" href="#formulario">Nueva evidencia</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Executive Command Center</p>
+        <h1>Estandar Max&Min</h1>
+        <p class="lead">Documenta estándares de orden, limpieza, máximos y mínimos con fotos de <b>ANTES</b> y <b>DESPUÉS</b>. Genera un PDF profesional listo para compartir.</p>
+        <div class="hero-pills">
+          <span>📸 Cámara o galería</span>
+          <span>📄 PDF dinámico</span>
+          <span>📶 Offline PWA</span>
+        </div>
+      </div>
+      <article class="hero-card">
+        <span>Checklist operativo</span>
+        <strong>8 estándares</strong>
+        <small>Orden, limpieza, PEPS/FEFO, reposición y seguridad.</small>
+      </article>
+    </section>
+
+    <section class="manual panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Guía rápida</p>
+          <h2>Cómo usar la herramienta</h2>
+        </div>
+        <a class="mini-link" href="assets/img/layout_ejemplo.jpeg" target="_blank" rel="noopener">Ver referencia visual</a>
+      </div>
+      <div class="steps-grid">
+        <article><b>1</b><h3>Selecciona tienda</h3><p>Elige CC, tienda, estación o área y confirma la fecha automática.</p></article>
+        <article><b>2</b><h3>Captura ANTES</h3><p>Adjunta la evidencia inicial del rack, estación, refrigerador o área.</p></article>
+        <article><b>3</b><h3>Ejecuta 5S</h3><p>Ordena, limpia, identifica producto y actualiza máximos y mínimos.</p></article>
+        <article><b>4</b><h3>Captura DESPUÉS</h3><p>Registra la mejora final con una foto clara y bien iluminada.</p></article>
+        <article><b>5</b><h3>Agrega evidencia</h3><p>Incluye varias estaciones si necesitas documentar más de un área.</p></article>
+        <article><b>6</b><h3>Genera PDF</h3><p>Descarga o comparte el archivo para subirlo a seguimiento.</p></article>
+      </div>
+    </section>
+
+    <section class="reference-grid">
+      <a class="reference-card large" href="assets/img/limpieza_back.jpeg" target="_blank" rel="noopener">
+        <img src="assets/img/limpieza_back.jpeg" alt="Foco en Back of House">
+        <span>Manual BOH · 5S</span>
+      </a>
+      <a class="reference-card" href="assets/img/limpieza_ejemplo_1.jpeg" target="_blank" rel="noopener"><img src="assets/img/limpieza_ejemplo_1.jpeg" alt="Ejemplo BOH 1"><span>Rack identificado</span></a>
+      <a class="reference-card" href="assets/img/limpieza_ejemplo_2.jpeg" target="_blank" rel="noopener"><img src="assets/img/limpieza_ejemplo_2.jpeg" alt="Ejemplo BOH 2"><span>Orden por categoría</span></a>
+      <a class="reference-card" href="assets/img/limpieza_ejemplo_3.jpeg" target="_blank" rel="noopener"><img src="assets/img/limpieza_ejemplo_3.jpeg" alt="Ejemplo BOH 3"><span>Vasos y tapas</span></a>
+    </section>
+
+    <section id="formulario" class="panel form-panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Captura ejecutiva</p>
+          <h2>Datos generales</h2>
+        </div>
+        <span id="todayBadge" class="badge">--</span>
+      </div>
+
+      <div class="form-grid">
+        <label> Tienda
+          <select id="storeSelect"></select>
+        </label>
+        <label> Estación / Área
+          <input id="stationInput" list="stationOptions" placeholder="Ej. Rack Jarabes">
+          <datalist id="stationOptions"></datalist>
+        </label>
+        <label> Fecha
+          <input id="dateInput" type="date">
+        </label>
+      </div>
+
+      <div class="evidence-head">
+        <div>
+          <p class="eyebrow">Antes / Después</p>
+          <h2>Evidencias</h2>
+        </div>
+        <button id="addEvidenceBtn" class="primary" type="button">+ Agregar evidencia</button>
+      </div>
+      <div id="evidenceList" class="evidence-list"></div>
+    </section>
+
+    <section class="panel checklist-panel">
+      <div class="section-head"><div><p class="eyebrow">Estándares clave</p><h2>Checklist operativo</h2></div></div>
+      <div id="checklist" class="checklist"></div>
+    </section>
+
+    <section class="panel export-panel">
+      <div>
+        <p class="eyebrow">Salida PDF</p>
+        <h2>Genera, descarga y comparte</h2>
+        <p>El PDF incluye portada, resumen ejecutivo, checklist y una página por evidencia con foto ANTES y DESPUÉS.</p>
+      </div>
+      <div class="export-actions">
+        <button id="pdfBtn" class="primary big" type="button">Generar PDF</button>
+        <button id="shareBtn" class="secondary big" type="button" disabled>Compartir PDF</button>
+      </div>
+      <div id="downloadBox" class="download-box hidden"></div>
+      <div class="upload-box">
+        <strong>Sube tu PDF a la carpeta Seguimiento_Max&Min_CN</strong>
+        <a href="https://grupovips-my.sharepoint.com/:f:/g/personal/enrique_cesar_starbucks_com_mx/IgDhO93UZT84ToAXFitqsMbaATbftPIJRmo_T47HBNYKPsE?e=rsEqCc" target="_blank" rel="noopener">Abrir carpeta de carga</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Juntos, creamos una operación más limpia, ordenada y clara. 💚</footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
