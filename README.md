@@ -1,20 +1,25 @@
-# Estandar Max&Min BOH - v1 PWA
+# Estandar Max&Min - v2 Limpio Operativo
 
 PWA ejecutiva para documentar evidencias de orden, limpieza, máximos y mínimos en Back of House.
 
 ## Incluye
+
 - Selector de tienda con CC.
-- Captura o carga de fotos ANTES / DESPUÉS.
-- Múltiples evidencias por PDF.
-- Checklist operativo.
-- PDF dinámico sin dependencias externas.
-- Botón de descarga, compartir si el navegador lo permite y link a Seguimiento_Max&Min_CN.
-- PWA instalable y funcional offline después de primera carga.
+- Estación editable o seleccionable.
+- Fecha automática al generar evidencia/PDF.
+- Captura o adjunto de foto ANTES y DESPUÉS.
+- Varias estaciones/evidencias.
+- PDF vertical simple: una página por evidencia, mitad ANTES y mitad DESPUÉS.
+- Modal interno para referencia Max&Min con botón X.
+- Link final para abrir carpeta de carga.
+- PWA lista para GitHub Pages.
 
 ## Publicación GitHub Pages
-Configurar Pages desde branch `main` y folder `/root`.
 
-Archivos principales:
+Usar `main / root`.
+
+Archivos clave:
+
 - `index.html`
 - `styles.css`
 - `app.js`
@@ -23,4 +28,4 @@ Archivos principales:
 - `.nojekyll`
 - `assets/`
 
-No subir ZIPs ni archivos temporales dentro de la raíz publicada.
+No requiere dependencias externas.

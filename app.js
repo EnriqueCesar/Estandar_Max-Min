@@ -1,10 +1,9 @@
 'use strict';
 
 const STORES = [
-  ['38115','Zona Azul'],['38117','Satelite'],['38119','Lomas Verdes'],['38136','Punta Norte'],['38142','Zona Esmeralda'],['38149','Bellavista'],['38176','Periferico Satélite DT'],['38186','Arboledas'],['38197','Echegaray'],['38205','Lindavista'],['38207','Lindavista II'],['38230','ITEMS Edo de Mexico'],['38266','San Mateo'],['38270','Lomas Verdes II'],['38333','Izcalli Mega'],['38339','San Marcos'],['38363','Galerias Atizapan'],['38368','Luna Park'],['38371','Montevideo DT'],['38374','Valle Dorado'],['38394','Centro Comercial Lomas Verdes'],['38401','Coacalco'],['38411','Torres Lindavista'],['38427','Plaza Satelite'],['38431','Eduardo Molina'],['38442','Sor Juana'],['38456','Plaza las Flores'],['38458','El Rosario'],['38460','Santa Monica'],['38475','Satelite Centro Civico'],['38507','Espacio Vista del Valle'],['38515','Patio Ecatepec'],['38527','Camarones'],['38529','Bosques de Aragon'],['38535','City Center Esmeralda'],['38546','Patio Claveria'],['38561','Parque Toreo'],['38590','Parque Toreo II'],['38604','Cosmopol'],['38606','TlalnepantlaCarso'],['38651','Via Vallejo'],['38656','Viveros de la Loma'],['38661','Jinetes'],['38674','Mundo E'],['38677','Patio la Raza'],['38694','Villas de la Hacienda'],['38695','Cetram 4 Caminos'],['38719','Plaza Fortuna'],['38770','Gustavo Baz 29'],['38792','Pasaje Tlanepantla'],['38811','Plaza Tepeyac'],['38837','Centenario Azcapotzalco'],['38845','Mundo E II'],['38859','Plaza Satelite II N1'],['38862','San Miguel Izcalli'],['38894','Galerias Perinorte'],['38903','Encuentro Oceania'],['38924','Plaza Aeropuerto'],['38925','Star Medica Lomas Verdes'],['38930','Blvd. Aeropuerto dt'],['38937','Parque Tepeyac Piso 1'],['38965','Parque Tepeyac Piso 2'],['38992','Tapo Puerta Oriente'],['38995','Encuentro Oceania II'],['43043','Atizapan'],['43111','Montevideo Insurgentes'],['43130','Town Center Nicolás Romero'],['43132','Plaza Vista Norte'],['43152','Samara Satélite'],['43193','Cosmopol N1'],['43194','Atana Lindavista'],['43195','Parque Jadin kiosko']
+  ['38115','Zona Azul'],['38117','Satelite'],['38119','Lomas Verdes'],['38136','Punta Norte'],['38142','Zona Esmeralda'],['38149','Bellavista'],['38176','Periferico Satelite DT'],['38186','Arboledas'],['38197','Echegaray'],['38205','Lindavista'],['38207','Lindavista II'],['38230','ITEMS Edo de Mexico'],['38266','San Mateo'],['38270','Lomas Verdes II'],['38333','Izcalli Mega'],['38339','San Marcos'],['38363','Galerias Atizapan'],['38368','Luna Park'],['38371','Montevideo DT'],['38374','Valle Dorado'],['38394','Centro Comercial Lomas Verdes'],['38401','Coacalco'],['38411','Torres Lindavista'],['38427','Plaza Satelite'],['38431','Eduardo Molina'],['38442','Sor Juana'],['38456','Plaza las Flores'],['38458','El Rosario'],['38460','Santa Monica'],['38475','Satelite Centro Civico'],['38507','Espacio Vista del Valle'],['38515','Patio Ecatepec'],['38527','Camarones'],['38529','Bosques de Aragon'],['38535','City Center Esmeralda'],['38546','Patio Claveria'],['38561','Parque Toreo'],['38590','Parque Toreo II'],['38604','Cosmopol'],['38606','TlalnepantlaCarso'],['38651','Via Vallejo'],['38656','Viveros de la Loma'],['38661','Jinetes'],['38674','Mundo E'],['38677','Patio la Raza'],['38694','Villas de la Hacienda'],['38695','Cetram 4 Caminos'],['38719','Plaza Fortuna'],['38770','Gustavo Baz 29'],['38792','Pasaje Tlanepantla'],['38811','Plaza Tepeyac'],['38837','Centenario Azcapotzalco'],['38845','Mundo E II'],['38859','Plaza Satelite II N1'],['38862','San Miguel Izcalli'],['38894','Galerias Perinorte'],['38903','Encuentro Oceania'],['38924','Plaza Aeropuerto'],['38925','Star Medica Lomas Verdes'],['38930','Blvd. Aeropuerto dt'],['38937','Parque Tepeyac Piso 1'],['38965','Parque Tepeyac Piso 2'],['38992','Tapo Puerta Oriente'],['38995','Encuentro Oceania II'],['43043','Atizapan'],['43111','Montevideo Insurgentes'],['43130','Town Center Nicolas Romero'],['43132','Plaza Vista Norte'],['43152','Samara Satelite'],['43193','Cosmopol N1'],['43194','Atana Lindavista'],['43195','Parque Jadin kiosko']
 ];
-const STATIONS = ['Escritorio','Rack Leches','Rack Jarabes','Rack Vaso/Tapas','Rack Polvos','Rack BOH','Refrigerador','Congelador','Estación CBS','Estación Espresso','Otra estación'];
-const CHECKS = ['Orden','Limpieza','Máximos y mínimos visibles','Producto identificado','PEPS/FEFO','Reposición clara','Sin producto en piso','Rack seguro y accesible'];
+const STATIONS = ['Escritorio','Rack Leches','Rack Jarabes','Rack Vaso/Tapas','Rack Polvos','Rack BOH','Refrigerador','Congelador','Estacion CBS','Estacion Espresso','Otra estacion'];
 const SHAREPOINT_URL = 'https://grupovips-my.sharepoint.com/:f:/g/personal/enrique_cesar_starbucks_com_mx/IgDhO93UZT84ToAXFitqsMbaATbftPIJRmo_T47HBNYKPsE?e=rsEqCc';
 const $ = s => document.querySelector(s);
 let evidences = [];
@@ -17,305 +16,283 @@ function todayISO(){
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
-function prettyDate(iso){
-  const [y,m,d] = String(iso||todayISO()).split('-').map(Number);
-  return new Date(y, m-1, d).toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'});
+function prettyDate(iso = todayISO()){
+  const [y,m,d] = iso.split('-').map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'});
 }
-function cleanFilePart(s){
-  return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,48) || 'Evidencia';
+function cleanFilePart(value){
+  return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,48) || 'Evidencia';
 }
 function selectedStore(){
   const [cc, ...nameParts] = ($('#storeSelect').value || '').split('|');
-  return {cc: cc || '', name: nameParts.join('|') || ''};
+  return {cc:cc || '', name:nameParts.join('|') || ''};
 }
-function stationName(ev){
-  return (ev?.station || $('#stationInput').value || 'Estacion').trim();
-}
+function currentStation(){ return ($('#stationInput').value || 'Estacion').trim() || 'Estacion'; }
+function setStatus(html){ $('#downloadBox').classList.remove('hidden'); $('#downloadBox').innerHTML = html; }
 
 function init(){
   $('#storeSelect').innerHTML = STORES.map(([cc,name]) => `<option value="${cc}|${name}">${cc} - ${name}</option>`).join('');
   $('#stationOptions').innerHTML = STATIONS.map(s => `<option value="${s}"></option>`).join('');
-  $('#dateInput').value = todayISO();
-  $('#todayBadge').textContent = prettyDate($('#dateInput').value);
-  $('#dateInput').addEventListener('change', () => $('#todayBadge').textContent = prettyDate($('#dateInput').value));
-  $('#checklist').innerHTML = CHECKS.map((c,i) => `<label class="check-item"><input type="checkbox" data-check="${i}" checked> ${c}</label>`).join('');
+  const dateText = prettyDate();
+  $('#todayBadge').textContent = dateText;
+  $('#captureDate').textContent = dateText;
   $('#addEvidenceBtn').addEventListener('click', () => addEvidence());
-  $('#pdfBtn').addEventListener('click', generatePdfFlow);
+  $('#pdfBtn').addEventListener('click', generatePdf);
   $('#shareBtn').addEventListener('click', sharePdf);
+  setupReferenceModal();
   addEvidence();
-  registerPwa();
+  setupPwa();
+}
+
+function setupReferenceModal(){
+  const modal = $('#referenceModal');
+  const open = () => { modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); };
+  const close = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); };
+  $('#openReference').addEventListener('click', open);
+  $('#openReferenceTop').addEventListener('click', open);
+  modal.querySelector('.modal-close').addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
 }
 
 function addEvidence(){
-  const station = $('#stationInput').value || STATIONS[0];
-  evidences.push({ id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()+Math.random()), index:evidenceSeq++, station, before:null, after:null, note:'' });
+  const ev = {id:evidenceSeq++, station:currentStation(), before:null, after:null, observation:''};
+  evidences.push(ev);
   renderEvidences();
 }
-function removeEvidence(id){
-  if (evidences.length <= 1) return alert('Mantén al menos una evidencia.');
-  evidences = evidences.filter(e => e.id !== id);
+function deleteEvidence(id){
+  if (evidences.length <= 1) return;
+  evidences = evidences.filter(ev => ev.id !== id);
   renderEvidences();
-}
-function updateEvidence(id, patch){
-  const ev = evidences.find(e => e.id === id);
-  if (!ev) return;
-  Object.assign(ev, patch);
 }
 function renderEvidences(){
-  $('#evidenceList').innerHTML = evidences.map((ev, idx) => `
+  $('#evidenceList').innerHTML = evidences.map((ev, i) => `
     <article class="evidence-card" data-id="${ev.id}">
       <div class="evidence-title">
-        <strong>Evidencia ${idx+1}</strong>
+        <strong>Estacion ${i+1}: ${escapeHtml(ev.station || currentStation())}</strong>
         <button class="delete-btn" type="button" data-delete="${ev.id}">Eliminar</button>
       </div>
-      <div class="obs-wrap" style="padding-top:18px">
-        <label>Nombre de estación para esta evidencia
-          <input data-field="station" value="${escapeHtml(ev.station || '')}" placeholder="Ej. Rack Jarabes">
-        </label>
-      </div>
       <div class="capture-grid">
-        ${photoBox(ev,'before','ANTES')}
-        ${photoBox(ev,'after','DESPUÉS')}
+        ${photoBox(ev, 'before', 'ANTES')}
+        ${photoBox(ev, 'after', 'DESPUES')}
       </div>
       <div class="obs-wrap">
-        <label>Observaciones opcionales
-          <textarea data-field="note" rows="3" placeholder="Ej. Se identificó producto, se actualizó máximo/mínimo y se dejó reposición clara.">${escapeHtml(ev.note || '')}</textarea>
+        <label>Observacion breve opcional
+          <textarea data-observation="${ev.id}" rows="2" placeholder="Ej. Rack identificado y maximos visibles.">${escapeHtml(ev.observation || '')}</textarea>
         </label>
       </div>
     </article>`).join('');
-
-  document.querySelectorAll('[data-delete]').forEach(b => b.onclick = () => removeEvidence(b.dataset.delete));
-  document.querySelectorAll('.evidence-card input[data-field], .evidence-card textarea[data-field]').forEach(el => {
-    el.addEventListener('input', () => updateEvidence(el.closest('.evidence-card').dataset.id, {[el.dataset.field]: el.value}));
-  });
-  document.querySelectorAll('input[type=file][data-photo]').forEach(input => input.addEventListener('change', onPhotoSelected));
-  document.querySelectorAll('[data-remove-photo]').forEach(btn => btn.onclick = () => {
-    const ev = evidences.find(e => e.id === btn.closest('.evidence-card').dataset.id);
-    if (ev) { ev[btn.dataset.removePhoto] = null; renderEvidences(); }
-  });
+  document.querySelectorAll('[data-delete]').forEach(btn => btn.addEventListener('click', () => deleteEvidence(Number(btn.dataset.delete))));
+  document.querySelectorAll('[data-observation]').forEach(area => area.addEventListener('input', e => {
+    const ev = evidences.find(x => x.id === Number(e.target.dataset.observation));
+    if (ev) ev.observation = e.target.value;
+  }));
+  document.querySelectorAll('input[type="file"][data-kind]').forEach(input => input.addEventListener('change', onFile));
+  document.querySelectorAll('[data-clear]').forEach(btn => btn.addEventListener('click', () => {
+    const ev = evidences.find(x => x.id === Number(btn.dataset.ev));
+    if (ev) ev[btn.dataset.clear] = null;
+    renderEvidences();
+  }));
 }
-function photoBox(ev, side, label){
-  const img = ev[side]?.dataUrl;
-  const accept = 'image/*';
+function photoBox(ev, kind, label){
+  const has = !!ev[kind];
   return `<div class="photo-box">
     <h3>${label}</h3>
-    <div class="preview">${img ? `<img src="${img}" alt="Foto ${label}">` : `<span>Sin foto ${label}<br><small>Usa cámara o galería</small></span>`}</div>
+    <div class="preview">${has ? `<img src="${ev[kind].dataUrl}" alt="Foto ${label}">` : `<span>Sin foto ${label}<br><small>Usa camara o galeria</small></span>`}</div>
     <div class="photo-actions">
-      <label class="file-btn">📷 Cámara<input data-photo="${side}" type="file" accept="${accept}" capture="environment"></label>
-      <label class="file-btn">🖼️ Galería<input data-photo="${side}" type="file" accept="${accept}"></label>
-      <button class="small-btn danger" type="button" data-remove-photo="${side}">Eliminar</button>
+      <label class="file-btn">Camara<input type="file" accept="image/*" capture="environment" data-ev="${ev.id}" data-kind="${kind}"></label>
+      <label class="file-btn">Galeria<input type="file" accept="image/*" data-ev="${ev.id}" data-kind="${kind}"></label>
+      <button class="small-btn danger" type="button" data-ev="${ev.id}" data-clear="${kind}">Eliminar</button>
     </div>
   </div>`;
 }
-async function onPhotoSelected(e){
+async function onFile(e){
   const file = e.target.files?.[0];
   if (!file) return;
-  const card = e.target.closest('.evidence-card');
-  const ev = evidences.find(x => x.id === card.dataset.id);
+  const ev = evidences.find(x => x.id === Number(e.target.dataset.ev));
   if (!ev) return;
-  try {
-    ev[e.target.dataset.photo] = await fileToJpegData(file, 1800, .86);
-    renderEvidences();
-  } catch(err) {
-    alert('No se pudo cargar la imagen. Intenta con otro archivo.');
-  }
+  ev[e.target.dataset.kind] = await readImageFile(file);
+  renderEvidences();
 }
-function fileToJpegData(file, maxSide=1800, quality=.86){
-  return new Promise((resolve,reject)=>{
+function readImageFile(file){
+  return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onerror = reject;
+    reader.onerror = () => reject(new Error('No se pudo leer la imagen.'));
     reader.onload = () => {
       const img = new Image();
-      img.onload = () => {
-        let {width:w, height:h} = img;
-        const scale = Math.min(1, maxSide / Math.max(w,h));
-        const cw = Math.max(1, Math.round(w*scale));
-        const ch = Math.max(1, Math.round(h*scale));
-        const canvas = document.createElement('canvas');
-        canvas.width = cw; canvas.height = ch;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,cw,ch);
-        ctx.drawImage(img,0,0,cw,ch);
-        resolve({dataUrl: canvas.toDataURL('image/jpeg', quality), width:cw, height:ch, name:file.name});
-      };
-      img.onerror = reject;
+      img.onload = () => resolve({dataUrl:reader.result, width:img.naturalWidth, height:img.naturalHeight});
+      img.onerror = () => reject(new Error('Archivo de imagen no valido.'));
       img.src = reader.result;
     };
     reader.readAsDataURL(file);
   });
 }
 function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  return String(s ?? '').replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 }
 
-function validation(){
-  const station = $('#stationInput').value.trim();
-  if (!station) return 'Escribe o selecciona estación / área.';
-  const incomplete = evidences.findIndex(e => !e.before || !e.after);
-  if (incomplete >= 0) return `Agrega foto ANTES y DESPUÉS en la evidencia ${incomplete+1}.`;
-  return '';
-}
-async function generatePdfFlow(){
-  const err = validation();
-  if (err) return alert(err);
-  $('#pdfBtn').disabled = true; $('#pdfBtn').textContent = 'Generando...';
+async function generatePdf(){
+  const store = selectedStore();
+  const date = todayISO();
+  evidences.forEach(ev => { if (!ev.station) ev.station = currentStation(); });
+  const invalid = evidences.find(ev => !ev.before || !ev.after);
+  if (!store.cc || !store.name) { setStatus('<span class="error">Selecciona una tienda.</span>'); return; }
+  if (!currentStation()) { setStatus('<span class="error">Selecciona o escribe una estacion.</span>'); return; }
+  if (invalid) { setStatus('<span class="error">Cada evidencia debe tener foto ANTES y foto DESPUES.</span>'); return; }
+  setStatus('<span class="ok">Generando PDF...</span>');
   try {
-    const {cc,name} = selectedStore();
-    const station = cleanFilePart($('#stationInput').value || evidences[0]?.station);
-    const date = $('#dateInput').value || todayISO();
-    const filename = `Estandar_MaxMin_${cc}_${cleanFilePart(name)}_${station}_${date}.pdf`;
-    const blob = buildPdfBlob({filename});
+    const pdfBlob = await buildPdf({store, date, evidences});
     if (lastPdfUrl) URL.revokeObjectURL(lastPdfUrl);
-    lastPdfUrl = URL.createObjectURL(blob);
-    lastPdfFile = new File([blob], filename, {type:'application/pdf'});
-    $('#downloadBox').classList.remove('hidden');
-    $('#downloadBox').innerHTML = `<div><strong class="ok">PDF generado correctamente</strong><br><span>${filename}</span></div><a href="${lastPdfUrl}" download="${filename}">Descargar PDF</a><a href="${SHAREPOINT_URL}" target="_blank" rel="noopener">Subir a SharePoint</a>`;
-    $('#shareBtn').disabled = !(navigator.canShare && navigator.canShare({files:[lastPdfFile]}));
-  } catch(e) {
-    console.error(e);
-    alert('No se pudo generar el PDF. Revisa las imágenes y vuelve a intentar.');
-  } finally {
-    $('#pdfBtn').disabled = false; $('#pdfBtn').textContent = 'Generar PDF';
+    const fileName = `Estandar_MaxMin_${cleanFilePart(store.cc)}_${cleanFilePart(store.name)}_${cleanFilePart(currentStation())}_${date}.pdf`;
+    lastPdfFile = new File([pdfBlob], fileName, {type:'application/pdf'});
+    lastPdfUrl = URL.createObjectURL(lastPdfFile);
+    $('#shareBtn').disabled = !navigator.canShare || !navigator.canShare({files:[lastPdfFile]});
+    setStatus(`<strong>PDF listo:</strong><span>${fileName}</span><a href="${lastPdfUrl}" download="${fileName}">Descargar PDF</a>`);
+  } catch (err) {
+    console.error(err);
+    setStatus('<span class="error">No se pudo generar el PDF. Revisa las imagenes e intenta de nuevo.</span>');
   }
 }
 async function sharePdf(){
-  if (!lastPdfFile) return;
-  try { await navigator.share({title:'Estandar Max&Min', text:'Evidencia Max&Min BOH', files:[lastPdfFile]}); }
-  catch(e) { console.warn('Compartir cancelado o no disponible', e); }
+  if (!lastPdfFile || !navigator.canShare || !navigator.canShare({files:[lastPdfFile]})) return;
+  await navigator.share({files:[lastPdfFile], title:'Estandar Max&Min', text:'Evidencia Max&Min'}).catch(() => null);
 }
 
-function checkedItems(){
-  return [...document.querySelectorAll('#checklist input:checked')].map(i => CHECKS[Number(i.dataset.check)]);
+async function imageToJpeg(info){
+  const img = await loadImage(info.dataUrl);
+  const maxW = 1800;
+  const scale = Math.min(1, maxW / img.naturalWidth);
+  const w = Math.max(1, Math.round(img.naturalWidth * scale));
+  const h = Math.max(1, Math.round(img.naturalHeight * scale));
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,w,h);
+  ctx.drawImage(img,0,0,w,h);
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.86);
+  return {bytes:dataUrlToBytes(dataUrl), width:w, height:h};
 }
-function ascii(s){
-  return String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[–—]/g,'-').replace(/[“”]/g,'"').replace(/[‘’]/g,"'").replace(/[^\x20-\x7E]/g,'').trim();
-}
-function pdfText(s,x,y,size=12,opts={}){
-  const weight = opts.bold ? '/F2' : '/F1';
-  const color = opts.color || '0 0 0';
-  return `BT ${color} rg ${weight} ${size} Tf ${x.toFixed(2)} ${y.toFixed(2)} Td (${escapePdf(ascii(s))}) Tj ET\n`;
-}
-function escapePdf(s){return String(s).replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');}
-function wrapLines(text, max=78){
-  const words = ascii(text).split(/\s+/).filter(Boolean), lines=[]; let line='';
-  words.forEach(w => { if ((line+' '+w).trim().length > max) { if(line) lines.push(line); line=w; } else line=(line+' '+w).trim(); });
-  if (line) lines.push(line);
-  return lines.length ? lines : [''];
-}
-function imageDrawOps(name, img, x, y, w, h){
-  const ratio = img.width / img.height;
-  let dw = w, dh = w / ratio;
-  if (dh > h) { dh = h; dw = h * ratio; }
-  const dx = x + (w-dw)/2;
-  const dy = y + (h-dh)/2;
-  return `q ${dw.toFixed(2)} 0 0 ${dh.toFixed(2)} ${dx.toFixed(2)} ${dy.toFixed(2)} cm /${name} Do Q\n`;
-}
-function jpegBinary(dataUrl){
-  return atob(dataUrl.split(',')[1]);
-}
-function buildPdfBlob(){
-  const pageW=595.28, pageH=841.89, margin=42;
-  const {cc,name} = selectedStore();
-  const station = $('#stationInput').value || 'Estacion';
-  const date = $('#dateInput').value || todayISO();
-  const checks = checkedItems();
-  const pdfImages = [];
-  const pages = [];
-  let imgCounter = 1;
-  const addImg = img => {
-    const name = `Im${imgCounter++}`;
-    pdfImages.push({name, data:jpegBinary(img.dataUrl), width:img.width, height:img.height});
-    return name;
-  };
-
-  let cover = '';
-  cover += '0.94 0.98 0.96 rg 0 0 595.28 841.89 re f\n';
-  cover += '0.00 0.38 0.25 rg 0 735 595.28 106.89 re f\n';
-  cover += pdfText('ESTANDAR MAX&MIN', margin, 785, 28, {bold:true,color:'1 1 1'});
-  cover += pdfText('Back of House | Orden | Limpieza | Maximos y Minimos', margin, 758, 13, {color:'0.85 1 0.93'});
-  cover += pdfText(`Tienda: ${cc} - ${name}`, margin, 690, 16, {bold:true,color:'0 0.25 0.16'});
-  cover += pdfText(`Estacion general: ${station}`, margin, 664, 14);
-  cover += pdfText(`Fecha: ${prettyDate(date)}`, margin, 640, 14);
-  cover += pdfText(`Evidencias documentadas: ${evidences.length}`, margin, 616, 14);
-  cover += pdfText('Resumen ejecutivo', margin, 560, 18, {bold:true,color:'0 0.38 0.25'});
-  wrapLines('Este documento integra evidencia antes y despues para validar orden, limpieza, claridad operativa, identificacion de producto y control visible de maximos y minimos en Back of House.', 86).forEach((l,i)=> cover += pdfText(l, margin, 532 - i*18, 12));
-  cover += pdfText('Checklist operativo validado', margin, 456, 16, {bold:true,color:'0 0.38 0.25'});
-  checks.forEach((c,i)=> cover += pdfText(`- ${c}`, margin + (i%2)*250, 426 - Math.floor(i/2)*20, 12));
-  cover += pdfText('Subir PDF a: Seguimiento_Max&Min_CN', margin, 108, 12, {bold:true,color:'0 0.38 0.25'});
-  pages.push({content:cover, xobjects:[]});
-
-  evidences.forEach((ev, idx) => {
-    const beforeName = addImg(ev.before);
-    const afterName = addImg(ev.after);
-    let c = '';
-    c += '1 1 1 rg 0 0 595.28 841.89 re f\n';
-    c += '0.00 0.38 0.25 rg 0 786 595.28 55.89 re f\n';
-    c += pdfText(`Max&Min - ${name}`, margin, 812, 16, {bold:true,color:'1 1 1'});
-    c += pdfText(`${cc} | ${stationName(ev)} | ${prettyDate(date)}`, margin, 793, 10, {color:'0.85 1 0.93'});
-    c += pdfText(`Evidencia ${idx+1}: ${stationName(ev)}`, margin, 754, 18, {bold:true,color:'0 0.38 0.25'});
-    c += '0.94 0.98 0.96 rg 42 410 246 300 re f\n0.94 0.98 0.96 rg 307 410 246 300 re f\n';
-    c += pdfText('ANTES', 134, 720, 16, {bold:true,color:'0.75 0.12 0.12'});
-    c += pdfText('DESPUES', 389, 720, 16, {bold:true,color:'0 0.38 0.25'});
-    c += imageDrawOps(beforeName, ev.before, 52, 426, 226, 272);
-    c += imageDrawOps(afterName, ev.after, 317, 426, 226, 272);
-    c += pdfText('Observaciones', margin, 368, 14, {bold:true,color:'0 0.38 0.25'});
-    const note = ev.note || 'Evidencia de orden, limpieza, identificacion y control de maximos y minimos documentada en tienda.';
-    wrapLines(note, 90).slice(0,5).forEach((l,i)=> c += pdfText(l, margin, 344 - i*17, 11));
-    c += pdfText('Checklist', margin, 244, 14, {bold:true,color:'0 0.38 0.25'});
-    checks.forEach((ch,i)=> c += pdfText(`[x] ${ch}`, margin + (i%2)*250, 218 - Math.floor(i/2)*18, 10));
-    c += pdfText('Generado desde PWA Estandar Max&Min', margin, 56, 9, {color:'0.35 0.45 0.41'});
-    pages.push({content:c, xobjects:[beforeName, afterName]});
+function loadImage(src){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
   });
-
+}
+function dataUrlToBytes(dataUrl){
+  const b64 = dataUrl.split(',')[1] || '';
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+  return bytes;
+}
+function pdfEscape(text){
+  return String(text ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\x20-\x7E]/g,'').replace(/[\\()]/g, '\\$&');
+}
+function pdfText(text, x, y, size, opts = {}){
+  const font = opts.bold ? 'F2' : 'F1';
+  const color = opts.color || '0.04 0.18 0.14';
+  return `BT /${font} ${size} Tf ${color} rg ${x} ${y} Td (${pdfEscape(text)}) Tj ET\n`;
+}
+function fitRect(img, x, y, w, h){
+  const scale = Math.min(w / img.width, h / img.height);
+  const dw = img.width * scale;
+  const dh = img.height * scale;
+  return {x:x + (w-dw)/2, y:y + (h-dh)/2, w:dw, h:dh};
+}
+function drawImage(name, img, x, y, w, h){
+  const r = fitRect(img, x, y, w, h);
+  return `q ${r.w.toFixed(2)} 0 0 ${r.h.toFixed(2)} ${r.x.toFixed(2)} ${r.y.toFixed(2)} cm /${name} Do Q\n`;
+}
+async function buildPdf({store, date, evidences}){
+  const images = [];
+  for (const ev of evidences) {
+    images.push(await imageToJpeg(ev.before));
+    images.push(await imageToJpeg(ev.after));
+  }
   const objects = [];
-  function addObject(str){ objects.push(str); return objects.length; }
-  const catalogId = addObject('');
-  const pagesId = addObject('');
-  const font1Id = addObject('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
-  const font2Id = addObject('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>');
-  const imgIds = {};
-  pdfImages.forEach(img => {
-    imgIds[img.name] = addObject(`<< /Type /XObject /Subtype /Image /Width ${img.width} /Height ${img.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${img.data.length} >>\nstream\n${img.data}\nendstream`);
-  });
-  const pageIds=[];
-  pages.forEach(pg => {
-    const contentId = addObject(`<< /Length ${pg.content.length} >>\nstream\n${pg.content}endstream`);
-    const xobj = pg.xobjects?.length ? `/XObject << ${pg.xobjects.map(n=>`/${n} ${imgIds[n]} 0 R`).join(' ')} >>` : '';
-    const pageId = addObject(`<< /Type /Page /Parent ${pagesId} 0 R /MediaBox [0 0 ${pageW} ${pageH}] /Resources << /Font << /F1 ${font1Id} 0 R /F2 ${font2Id} 0 R >> ${xobj} >> /Contents ${contentId} 0 R >>`);
+  const addObj = data => { objects.push(data); return objects.length; };
+  const catalogId = addObj('');
+  const pagesId = addObj('');
+  const font1Id = addObj('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\n');
+  const font2Id = addObj('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>\n');
+  const pageIds = [];
+  let imageCursor = 0;
+  const W = 595.28, H = 841.89;
+  for (let i=0;i<evidences.length;i++) {
+    const before = images[imageCursor++];
+    const after = images[imageCursor++];
+    const beforeId = addObj({stream:before.bytes, dict:`<< /Type /XObject /Subtype /Image /Width ${before.width} /Height ${before.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${before.bytes.length} >>`});
+    const afterId = addObj({stream:after.bytes, dict:`<< /Type /XObject /Subtype /Image /Width ${after.width} /Height ${after.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${after.bytes.length} >>`});
+    const ev = evidences[i];
+    const subtitle = `${store.cc} ${store.name} - ${ev.station || currentStation()}`;
+    let content = '';
+    content += '1 1 1 rg 0 0 595.28 841.89 re f\n';
+    content += '0.00 0.38 0.25 rg 0 784 595.28 57.89 re f\n';
+    content += pdfText('Estandar Max&Min', 40, 812, 20, {bold:true,color:'1 1 1'});
+    content += pdfText(subtitle, 40, 789, 11, {color:'0.85 1 0.93'});
+    content += pdfText(`Fecha: ${prettyDate(date)}`, 418, 789, 11, {color:'0.85 1 0.93'});
+    content += pdfText('ANTES', 40, 742, 18, {bold:true,color:'0.76 0.10 0.10'});
+    content += '0.96 0.98 0.97 rg 38 420 519 300 re f\n0.86 0.91 0.88 RG 38 420 519 300 re S\n';
+    content += drawImage('ImBefore', before, 50, 432, 495, 274);
+    content += pdfText('DESPUES', 40, 379, 18, {bold:true,color:'0 0.38 0.25'});
+    content += '0.96 0.98 0.97 rg 38 56 519 300 re f\n0.86 0.91 0.88 RG 38 56 519 300 re S\n';
+    content += drawImage('ImAfter', after, 50, 68, 495, 274);
+    if (ev.observation) content += pdfText(`Obs: ${ev.observation}`, 40, 32, 9, {color:'0.35 0.45 0.40'});
+    const contentBytes = new TextEncoder().encode(content);
+    const contentId = addObj({stream:contentBytes, dict:`<< /Length ${contentBytes.length} >>`});
+    const pageId = addObj(`<< /Type /Page /Parent ${pagesId} 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /Font << /F1 ${font1Id} 0 R /F2 ${font2Id} 0 R >> /XObject << /ImBefore ${beforeId} 0 R /ImAfter ${afterId} 0 R >> >> /Contents ${contentId} 0 R >>\n`);
     pageIds.push(pageId);
-  });
-  objects[catalogId-1] = `<< /Type /Catalog /Pages ${pagesId} 0 R >>`;
-  objects[pagesId-1] = `<< /Type /Pages /Kids [${pageIds.map(id=>`${id} 0 R`).join(' ')}] /Count ${pageIds.length} >>`;
-
-  let pdf = '%PDF-1.4\n%\xE2\xE3\xCF\xD3\n';
+  }
+  objects[catalogId-1] = `<< /Type /Catalog /Pages ${pagesId} 0 R >>\n`;
+  objects[pagesId-1] = `<< /Type /Pages /Kids [${pageIds.map(id => `${id} 0 R`).join(' ')}] /Count ${pageIds.length} >>\n`;
+  return new Blob([assemblePdf(objects)], {type:'application/pdf'});
+}
+function asBytes(data){
+  if (data instanceof Uint8Array) return data;
+  return new TextEncoder().encode(String(data));
+}
+function assemblePdf(objects){
+  const chunks = [];
   const offsets = [0];
-  objects.forEach((obj,i)=>{
-    offsets.push(pdf.length);
-    pdf += `${i+1} 0 obj\n${obj}\nendobj\n`;
+  let pos = 0;
+  const push = part => { const b = asBytes(part); chunks.push(b); pos += b.length; };
+  push('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n');
+  objects.forEach((obj, i) => {
+    offsets.push(pos);
+    push(`${i+1} 0 obj\n`);
+    if (obj && typeof obj === 'object' && obj.stream) {
+      push(obj.dict + '\nstream\n');
+      push(obj.stream);
+      push('\nendstream\n');
+    } else push(obj);
+    push('endobj\n');
   });
-  const xref = pdf.length;
-  pdf += `xref\n0 ${objects.length+1}\n0000000000 65535 f \n`;
-  for (let i=1;i<offsets.length;i++) pdf += String(offsets[i]).padStart(10,'0') + ' 00000 n \n';
-  pdf += `trailer\n<< /Size ${objects.length+1} /Root ${catalogId} 0 R >>\nstartxref\n${xref}\n%%EOF`;
-  const bytes = new Uint8Array(pdf.length);
-  for(let i=0;i<pdf.length;i++) bytes[i] = pdf.charCodeAt(i) & 255;
-  return new Blob([bytes], {type:'application/pdf'});
+  const xref = pos;
+  push(`xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`);
+  for (let i=1;i<offsets.length;i++) push(`${String(offsets[i]).padStart(10,'0')} 00000 n \n`);
+  push(`trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`);
+  const total = chunks.reduce((n,c)=>n+c.length,0);
+  const out = new Uint8Array(total);
+  let at = 0;
+  chunks.forEach(c => { out.set(c, at); at += c.length; });
+  return out;
 }
 
-function registerPwa(){
+function setupPwa(){
   window.addEventListener('beforeinstallprompt', e => {
-    e.preventDefault();
-    deferredInstallPrompt = e;
+    e.preventDefault(); deferredInstallPrompt = e;
     $('#installBtn').classList.remove('hidden');
   });
   $('#installBtn').addEventListener('click', async () => {
     if (!deferredInstallPrompt) return;
     deferredInstallPrompt.prompt();
-    await deferredInstallPrompt.userChoice.catch(()=>null);
+    await deferredInstallPrompt.userChoice.catch(() => null);
     deferredInstallPrompt = null;
     $('#installBtn').classList.add('hidden');
   });
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(console.warn);
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(console.warn);
 }
 
 document.addEventListener('DOMContentLoaded', init);
