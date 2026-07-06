@@ -29,3 +29,9 @@ Archivos clave:
 - `assets/`
 
 No requiere dependencias externas.
+
+
+## v3 PDF Margenes
+- Ajuste automatico de fotos ANTES/DESPUES al maximo espacio del recuadro gris sin deformar ni recortar.
+- PDF vertical: una pagina por evidencia, sin checklist ni textos extra.
+- Mensaje final actualizado para validar con DM antes de subir a la carpeta de seguimiento.

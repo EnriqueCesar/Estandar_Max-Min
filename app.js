@@ -147,7 +147,7 @@ async function generatePdf(){
     lastPdfFile = new File([pdfBlob], fileName, {type:'application/pdf'});
     lastPdfUrl = URL.createObjectURL(lastPdfFile);
     $('#shareBtn').disabled = !navigator.canShare || !navigator.canShare({files:[lastPdfFile]});
-    setStatus(`<strong>PDF listo:</strong><span>${fileName}</span><a href="${lastPdfUrl}" download="${fileName}">Descargar PDF</a>`);
+    setStatus(`<strong>PDF listo:</strong><span>${fileName}</span><a href="${lastPdfUrl}" download="${fileName}">Descargar PDF</a><small>Cuando termines, descarga tu PDF, valida con DM y subelo a la carpeta de seguimiento.</small>`);
   } catch (err) {
     console.error(err);
     setStatus('<span class="error">No se pudo generar el PDF. Revisa las imagenes e intenta de nuevo.</span>');
@@ -196,9 +196,18 @@ function pdfText(text, x, y, size, opts = {}){
   return `BT /${font} ${size} Tf ${color} rg ${x} ${y} Td (${pdfEscape(text)}) Tj ET\n`;
 }
 function fitRect(img, x, y, w, h){
-  const scale = Math.min(w / img.width, h / img.height);
-  const dw = img.width * scale;
-  const dh = img.height * scale;
+  // Ajuste automatico tipo contain optimizado: usa el maximo espacio disponible
+  // sin deformar ni recortar la fotografia.
+  const imgRatio = img.width / img.height;
+  const boxRatio = w / h;
+  let dw, dh;
+  if (imgRatio > boxRatio) {
+    dw = w;
+    dh = w / imgRatio;
+  } else {
+    dh = h;
+    dw = h * imgRatio;
+  }
   return {x:x + (w-dw)/2, y:y + (h-dh)/2, w:dw, h:dh};
 }
 function drawImage(name, img, x, y, w, h){
@@ -233,13 +242,16 @@ async function buildPdf({store, date, evidences}){
     content += pdfText('Estandar Max&Min', 40, 812, 20, {bold:true,color:'1 1 1'});
     content += pdfText(subtitle, 40, 789, 11, {color:'0.85 1 0.93'});
     content += pdfText(`Fecha: ${prettyDate(date)}`, 418, 789, 11, {color:'0.85 1 0.93'});
-    content += pdfText('ANTES', 40, 742, 18, {bold:true,color:'0.76 0.10 0.10'});
-    content += '0.96 0.98 0.97 rg 38 420 519 300 re f\n0.86 0.91 0.88 RG 38 420 519 300 re S\n';
-    content += drawImage('ImBefore', before, 50, 432, 495, 274);
-    content += pdfText('DESPUES', 40, 379, 18, {bold:true,color:'0 0.38 0.25'});
-    content += '0.96 0.98 0.97 rg 38 56 519 300 re f\n0.86 0.91 0.88 RG 38 56 519 300 re S\n';
-    content += drawImage('ImAfter', after, 50, 68, 495, 274);
-    if (ev.observation) content += pdfText(`Obs: ${ev.observation}`, 40, 32, 9, {color:'0.35 0.45 0.40'});
+    // Cada recuadro toma casi media hoja. La imagen usa el area interior maxima.
+    const frameX = 28, frameW = 539, frameH = 330, pad = 8;
+    const beforeFrameY = 405;
+    const afterFrameY = 40;
+    content += pdfText('ANTES', 32, 746, 18, {bold:true,color:'0.76 0.10 0.10'});
+    content += `0.96 0.98 0.97 rg ${frameX} ${beforeFrameY} ${frameW} ${frameH} re f\n0.86 0.91 0.88 RG ${frameX} ${beforeFrameY} ${frameW} ${frameH} re S\n`;
+    content += drawImage('ImBefore', before, frameX + pad, beforeFrameY + pad, frameW - (pad * 2), frameH - (pad * 2));
+    content += pdfText('DESPUES', 32, 381, 18, {bold:true,color:'0 0.38 0.25'});
+    content += `0.96 0.98 0.97 rg ${frameX} ${afterFrameY} ${frameW} ${frameH} re f\n0.86 0.91 0.88 RG ${frameX} ${afterFrameY} ${frameW} ${frameH} re S\n`;
+    content += drawImage('ImAfter', after, frameX + pad, afterFrameY + pad, frameW - (pad * 2), frameH - (pad * 2));
     const contentBytes = new TextEncoder().encode(content);
     const contentId = addObj({stream:contentBytes, dict:`<< /Length ${contentBytes.length} >>`});
     const pageId = addObj(`<< /Type /Page /Parent ${pagesId} 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /Font << /F1 ${font1Id} 0 R /F2 ${font2Id} 0 R >> /XObject << /ImBefore ${beforeId} 0 R /ImAfter ${afterId} 0 R >> >> /Contents ${contentId} 0 R >>\n`);

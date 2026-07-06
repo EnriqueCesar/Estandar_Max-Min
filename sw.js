@@ -1,4 +1,4 @@
-const CACHE = 'estandar-maxmin-v2-limpio-operativo-2026-07-06';
+const CACHE = 'estandar-maxmin-v3-pdf-margenes-2026-07-06';
 const ASSETS = [
   './',
   'index.html',
